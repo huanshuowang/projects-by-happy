@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects by Happy</title>
+  <meta name="description" content="Happy 做出来的有用或有趣的东西。" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">Projects <span class="by">by</span> Happy<span class="dot">.</span></a>
+      <div class="nav-links">
+        <a href="#works">作品</a>
+        <a href="#about">关于</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1>一些有趣的东西和想法<span class="dot">。</span></h1>
+      <p>人生的意义就在于思考和折腾！</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ---------------- WORKS ---------------- -->
+    <section class="section" id="works">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>作品 <span class="count" id="work-count"></span></h2>
+        </div>
+
+        <!-- 分类筛选：由 JS 根据卡片 kicker 自动生成，新增作品自动出现新分类 -->
+        <div class="filters" id="filters"></div>
+
+        <div class="cards" id="cards">
+
+          <div class="col">
+
+          <!-- ridewithhappy -->
+          <article class="card">
+            <div class="kicker">Website</div>
+            <h3><a href="https://ridewithhappy.com" target="_blank" rel="noopener">Ride with Happy</a></h3>
+            <p class="desc">
+              值不值得去 · 主题乐园决策器：答几道题，从刺激度、项目类型、同行人员、重玩意愿、
+              喜欢的 IP 等维度，帮你算出最适合你的迪士尼/环球影城，推荐具体项目，
+              还能和朋友匹配最适合一起去的乐园。覆盖全球 7 个国家、19 个迪士尼 &amp; 环球影城园区、640+ 个游乐项目。
+            </p>
+            <p class="think">
+              <b>我的想法：</b>因为特别喜欢主题乐园，最开始想的是做一个能查过山车重复率的工具，
+              结果想法越来越多，就变成一个很综合的决策器了。最费劲的其实不是做这个决策器，
+              而是审核这 640 多个项目的数据和给他们分类……所以其实真正的酷炫之处在于结果页的项目列表里！
+            </p>
+            <div class="links">
+              <a href="https://ridewithhappy.com" target="_blank" rel="noopener">访问网站 <span class="arr">→</span></a>
+            </div>
+          </article>
+
+          <!-- bilibili downloader -->
+          <article class="card">
+            <div class="kicker">Chrome 插件</div>
+            <h3>Bilibili 下载器</h3>
+            <p class="desc">
+              如标题所述，可以下载 B 站视频（MP4）和字幕（如有，SRT）到本地。
+            </p>
+            <p class="think">
+              <b>我的想法：</b>最开始想试试能不能做到而已……想不到真做到了哈哈哈哈！
+              可以下载喜欢的电影/单口喜剧专场离线看了，耶。
+            </p>
+            <div class="links">
+              <a href="https://huanshuowang.com/bilibili-downloader" target="_blank" rel="noopener">项目主页 <span class="arr">→</span></a>
+            </div>
+          </article>
+
+          </div>
+
+          <div class="col">
+
+          <!-- youtube dual subtitles -->
+          <article class="card">
+            <div class="kicker">Chrome 插件</div>
+            <h3>YouTube 双语字幕</h3>
+            <p class="desc">
+              在 YouTube 上同时显示两种语言的字幕。用视频自带字幕或 Google 免费翻译，
+              也可选 Claude / OpenAI / Gemini / DeepSeek 做更高精度的翻译。
+            </p>
+            <p class="think">
+              <b>我的想法：</b>做的原因是之前一直用得好好的双语字幕插件被油管 ban 了 :( ，
+              自带字幕只能显示单语言。后面朋友启发我用了 API 翻译，确实翻译效果更好了，
+              而且 DeepSeek 的额度好便宜哈哈哈哈。
+            </p>
+            <div class="links">
+              <a href="https://huanshuowang.github.io/youtube-dual-subtitles/" target="_blank" rel="noopener">项目主页 <span class="arr">→</span></a>
+            </div>
+          </article>
+
+          <!-- bili to douban -->
+          <article class="card">
+            <div class="kicker">Chrome 插件</div>
+            <h3>这豆瓣评分多少？</h3>
+            <p class="desc">
+              看剧、看电影、刷解说、逛搜索页——点一下插件图标，就直接知道这部片的豆瓣多少分。
+            </p>
+            <p class="think">
+              <b>我的想法：</b>喜欢先看豆瓣再决定看不看这个片子的人有福了（我有福了）。
+              目标是不用费啦吧唧地打开手机搜那个片名——每次看手机最后都会 end up 看了半小时小红书，
+              电脑都黑屏了……
+            </p>
+            <div class="links">
+              <a href="https://huanshuowang.com/douban-rating-ext/" target="_blank" rel="noopener">项目主页 <span class="arr">→</span></a>
+            </div>
+          </article>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- ABOUT ---------------- -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head"><h2>关于</h2></div>
+        <div class="about-body">
+          <p>
+            我是 Happy。我喜欢尝试，喜欢捣鼓可能性，喜欢把日常里「要是有个 xx 就好了」的念头变成现实。
+            所以我把所有我做出来的、有用或者有趣的东西都放在这里，也会在这里记录一些想法。
+          </p>
+          <p>
+            我喜欢体验，喜欢故事。所以我喜欢主题乐园、单口喜剧、情景喜剧、和音乐剧。更大范围来说，
+            我享受电影电视、播客、音乐。哦对了，我还很喜欢吃，尤其喜欢咖啡。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap" style="width:100%;">
+      <span>© <span id="year"></span> Happy</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- 分类筛选：从卡片 kicker 自动生成，新作品自动获得分类 ----------
+       筛选后把可见卡片按原始顺序重新分进两列：先填满左列，再到右列 */
+    (function () {
+      const cards = Array.from(document.querySelectorAll('#cards .card')); // 原始顺序
+      const cols = document.querySelectorAll('#cards .col');
+      const filterBar = document.getElementById('filters');
+      const countEl = document.getElementById('work-count');
+
+      function layout(type) {
+        const visible = cards.filter(c =>
+          type === '全部' || c.querySelector('.kicker').textContent.trim() === type);
+        cards.forEach(c => c.classList.toggle('hide', !visible.includes(c)));
+        const half = Math.ceil(visible.length / 2);
+        visible.forEach((c, i) => cols[i < half ? 0 : 1].appendChild(c));
+        // 隐藏的卡片挪到右列末尾（display:none，不影响排版）
+        cards.filter(c => !visible.includes(c)).forEach(c => cols[1].appendChild(c));
+        countEl.textContent = '· ' + visible.length;
+      }
+
+      const types = ['全部', ...new Set(cards.map(c => c.querySelector('.kicker').textContent.trim()))];
+      types.forEach((t, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'chip' + (i === 0 ? ' on' : '');
+        btn.textContent = t;
+        btn.addEventListener('click', () => {
+          filterBar.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+          btn.classList.add('on');
+          layout(t);
+        });
+        filterBar.appendChild(btn);
+      });
+
+      layout('全部');
+    })();
+
+    /* ---------- 滚动浮现 ---------- */
+    (function () {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.card, .about-body').forEach(el => {
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
