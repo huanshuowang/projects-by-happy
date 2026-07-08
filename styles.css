@@ -197,11 +197,17 @@ a:hover { text-decoration: underline; }
   margin: 0;
 }
 .card .think b { color: var(--accent); }
-.card .links { margin-top: 16px; display: flex; gap: 16px; }
+.card .links { margin-top: 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .card .links a { font-size: 14px; font-weight: 600; }
 .card .links a:hover { text-decoration: none; }
 .card .links .arr { display: inline-block; transition: transform .18s ease; }
 .card .links a:hover .arr { transform: translateX(4px); }
+.card .links a.store {
+  color: #fff; background: var(--accent);
+  padding: 6px 14px; border-radius: 999px;
+  box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+.card .links a.store:hover { filter: brightness(1.05); }
 
 /* ---------- about ---------- */
 .about-body { color: var(--muted); max-width: 640px; }

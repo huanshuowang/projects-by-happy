@@ -170,6 +170,8 @@
           en: 'A blessing for anyone who likes to check Douban before deciding whether to watch something (a blessing for me). The goal: no more fumbling for your phone to search the title — every time I pick up my phone I end up half an hour deep in Xiaohongshu and the computer has already gone dark…',
         },
         linkText: { zh: '项目主页', en: 'Project page' },
+        storeHref: 'https://chromewebstore.google.com/detail/necllgpdfffbdcgenhlgoimhnjfjdkkp',
+        storeText: { zh: '在 Chrome 应用商店安装', en: 'Get it on the Chrome Web Store' },
       },
     ];
 
@@ -201,7 +203,11 @@
           '<p class="desc"></p>' +
           '<p class="think"></p>' +
           '<div class="links"><a href="' + p.titleHref + '" target="_blank" rel="noopener">' +
-            '<span class="lt"></span> <span class="arr">→</span></a></div>';
+            '<span class="lt"></span> <span class="arr">→</span></a>' +
+            (p.storeHref
+              ? '<a class="store" href="' + p.storeHref + '" target="_blank" rel="noopener">' +
+                '<span class="st"></span> <span class="arr">→</span></a>'
+              : '') + '</div>';
         cols[0].appendChild(el);
         return el;
       });
@@ -254,6 +260,8 @@
           el.querySelector('.desc').innerHTML = p.desc[lang];
           el.querySelector('.think').innerHTML = '<b>' + t.thoughts + '</b>' + p.think[lang];
           el.querySelector('.links .lt').textContent = p.linkText[lang];
+          const st = el.querySelector('.links .st');
+          if (st) st.textContent = p.storeText[lang];
         });
 
         // 语言开关高亮
