@@ -9,6 +9,7 @@
   --accent-soft: #fef2ee;
   --radius: 16px;
   --maxw: 1020px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); /* strong ease-out for UI motion */
   --sans: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei",
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -77,7 +78,6 @@ a:hover { text-decoration: underline; }
   transition: transform .22s ease;
 }
 .nav-links a:hover { color: var(--ink); text-decoration: none; }
-.nav-links a:hover::after { transform: scaleX(1); }
 
 /* ---------- language toggle ---------- */
 .nav-right { display: flex; align-items: center; gap: 22px; }
@@ -98,9 +98,10 @@ a:hover { text-decoration: underline; }
   border-radius: 999px;
   padding: 5px 11px;
   cursor: pointer;
-  transition: color .15s ease, background .15s ease;
+  transition: color .15s ease, background .15s ease, transform 160ms var(--ease-out);
 }
 .lang-toggle button:hover { color: var(--ink); }
+.lang-toggle button:active { transform: scale(0.97); }
 .lang-toggle button.on { color: #fff; background: var(--accent); }
 @media (max-width: 520px) { .nav-right { gap: 14px; } .nav-links { gap: 18px; } }
 
@@ -148,15 +149,17 @@ a:hover { text-decoration: underline; }
   border-radius: 999px;
   padding: 6px 15px;
   cursor: pointer;
-  transition: color .15s ease, border-color .15s ease, background .15s ease, transform .15s ease;
+  transition: color .15s ease, border-color .15s ease, background .15s ease, transform 160ms var(--ease-out);
 }
-.chip:hover { color: var(--ink); border-color: color-mix(in srgb, var(--ink) 25%, var(--border)); transform: translateY(-1px); }
+.chip:active { transform: scale(0.97); }
 .chip.on {
   color: #fff; background: var(--accent); border-color: var(--accent);
 }
 
 /* ---------- project cards（两列瀑布，列内排位可控）---------- */
-.cards { display: flex; align-items: flex-start; gap: 20px; }
+.cards { display: flex; align-items: flex-start; gap: 20px; transition: opacity 160ms var(--ease-out); }
+.cards.switching { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .cards { transition: none; } }
 .cards .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
 @media (max-width: 680px) { .cards { flex-direction: column; } .cards .col { width: 100%; } }
 
@@ -165,12 +168,7 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 26px;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-  box-shadow: 0 14px 36px -18px color-mix(in srgb, var(--accent) 30%, rgba(0,0,0,.25));
+  transition: transform .18s var(--ease-out), border-color .18s ease, box-shadow .18s ease, opacity .18s var(--ease-out);
 }
 .card.hide { display: none; }
 .card .kicker {
@@ -200,20 +198,38 @@ a:hover { text-decoration: underline; }
 .card .links { margin-top: 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .card .links a { font-size: 14px; font-weight: 600; }
 .card .links a:hover { text-decoration: none; }
-.card .links .arr { display: inline-block; transition: transform .18s ease; }
-.card .links a:hover .arr { transform: translateX(4px); }
+.card .links .arr { display: inline-block; transition: transform .18s var(--ease-out); }
 .card .links a.store {
   color: #fff; background: var(--accent);
   padding: 6px 14px; border-radius: 999px;
   box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+  transition: transform 160ms var(--ease-out), filter .15s ease;
 }
-.card .links a.store:hover { filter: brightness(1.05); }
+.card .links a.store:active { transform: scale(0.97); }
 
 /* ---------- about ---------- */
 .about-body { color: var(--muted); max-width: 640px; }
 
+/* ---------- hover 效果（仅在真正支持 hover 的设备上启用，避免触屏点按后卡在 hover 态）---------- */
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover::after { transform: scaleX(1); }
+  /* 变色只作用于非激活标签，激活态（.on）保持橙底白字 */
+  .chip:not(.on):hover {
+    color: var(--ink);
+    border-color: color-mix(in srgb, var(--ink) 25%, var(--border));
+  }
+  .chip:hover { transform: translateY(-1px); }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 14px 36px -18px color-mix(in srgb, var(--accent) 30%, rgba(0,0,0,.25));
+  }
+  .card .links a:hover .arr { transform: translateX(4px); }
+  .card .links a.store:hover { filter: brightness(1.05); }
+}
+
 /* ---------- 滚动浮现 ---------- */
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .45s var(--ease-out), transform .45s var(--ease-out); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }

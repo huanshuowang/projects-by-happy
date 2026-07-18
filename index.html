@@ -178,9 +178,23 @@
     /* ==================== 渲染 & 语言切换 ==================== */
     (function () {
       const cols = document.querySelectorAll('#cards .col');
+      const cardsWrap = document.getElementById('cards');
       const filterBar = document.getElementById('filters');
       const countEl = document.getElementById('work-count');
       const langToggle = document.getElementById('langToggle');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      // 切换分类时，让卡片列表整体淡出→重排→淡入，避免瞬间跳变
+      function switchCat(cat) {
+        if (currentCat === cat) return;
+        currentCat = cat;
+        if (reduceMotion.matches) { layout(); return; }
+        cardsWrap.classList.add('switching');
+        setTimeout(() => {
+          layout();
+          requestAnimationFrame(() => { cardsWrap.classList.remove('switching'); });
+        }, 160);
+      }
 
       // 决定初始语言：localStorage > 浏览器语言 > 中文
       const saved = localStorage.getItem('lang');
@@ -230,10 +244,9 @@
           btn.className = 'chip' + (cat === currentCat ? ' on' : '');
           btn.textContent = cat === 'all' ? UI[lang].all : CATS[cat][lang];
           btn.addEventListener('click', () => {
-            currentCat = cat;
             filterBar.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
             btn.classList.add('on');
-            layout();
+            switchCat(cat);
           });
           filterBar.appendChild(btn);
         });
@@ -287,8 +300,11 @@
     /* ---------- 滚动浮现 ---------- */
     (function () {
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        // 同一批进入视口的卡片依次错开 50ms，读起来像一次协调的入场，而非同时弹出
+        entries.filter(e => e.isIntersecting).forEach((e, i) => {
+          e.target.style.transitionDelay = (Math.min(i, 6) * 50) + 'ms';
+          e.target.classList.add('in');
+          io.unobserve(e.target);
         });
       }, { threshold: 0.08 });
       document.querySelectorAll('.card, .about-body').forEach(el => {
