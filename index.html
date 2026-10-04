@@ -114,7 +114,66 @@
     };
 
     // 作品数据（中/英双语）
+    // 文字 logo：标题处用图片替换文字，浅色/深色模式各一张
+    const wm = (name, alt, h) =>
+      '<img class="wm wm-light" src="img/' + name + '.svg" alt="' + alt + '" height="' + h + '">' +
+      '<img class="wm wm-dark" src="img/' + name + '-dark.svg" alt="' + alt + '" height="' + h + '">';
+    const LOGOS = {
+      happysubs: wm('happysubs-wordmark', 'HappySubs', 20),
+      wisebird: wm('wisebird-wordmark', 'Wisebird 择木', 22),
+    };
+
     const PROJECTS = [
+      {
+        cat: 'chrome',
+        titleHref: 'https://huanshuowang.com/happysubs',
+        logo: 'happysubs',
+        title: { zh: '双语字幕', en: 'Dual Subtitles for YouTube, Vimeo and Bilibili' },
+        desc: {
+          zh: '在 YouTube、Vimeo、B 站上同时显示两种语言的字幕。用视频自带字幕或 Google 免费翻译，也可选用AI做更高精度的翻译。本身没有字幕的视频，可以边播边听译。',
+          en: 'Show subtitles in two languages at once on YouTube, Vimeo and Bilibili. Use the video’s own captions or free Google Translate, or switch to AI for higher-accuracy translation. Videos that have no subtitles of their own can be transcribed as they play.',
+        },
+        think: {
+          zh: '做的原因是之前一直用得好好的双语字幕插件被油管 ban 了 :( ，自带字幕只能显示单语言。后面朋友启发我用了 API 翻译，确实翻译效果更好了～ 后续同步到Vimeo和B站啦，还针对B站的生肉视频们设计了实时听译功能。',
+          en: 'I built it because the dual-subtitle extension I’d happily used forever got banned by YouTube :( and the built-in captions only show one language. Later a friend nudged me to try API translation, which really does work better～ After that I brought it over to Vimeo and Bilibili, and built live transcription for all those raw, subtitle-less videos on Bilibili.',
+        },
+        linkText: { zh: '项目主页', en: 'Project page' },
+        storeHref: 'https://chromewebstore.google.com/detail/malocefbdblplamcmmmpilepcgllfmnf',
+        storeText: { zh: '在 Chrome 应用商店安装', en: 'Get it on the Chrome Web Store' },
+      },
+      {
+        cat: 'chrome',
+        titleHref: 'https://huanshuowang.com/wisebird/',
+        icon: 'img/wisebird-icon.png',
+        logo: 'wisebird',
+        title: { zh: '', en: '' },
+        desc: {
+          zh: '看岗位的时候点一下，就知道值不值得投。在 LinkedIn、Handshake 或任何带岗位描述的页面上，对照你的简历打分，查 OPT / STEM OPT / H-1B 信号，揪出「仅限公民」这类红旗，再给一段中文要点。支持一次批量筛选多个岗位。',
+          en: 'Click once while browsing a job posting to know whether it’s worth applying. On LinkedIn, Handshake or any page with a job description, it scores the role against your résumé, checks OPT / STEM OPT / H-1B signals, flags red flags like “U.S. citizens only”, and gives you a short summary in Chinese. It can also pre-screen a whole batch of postings at once.',
+        },
+        think: {
+          zh: '名字来自「良禽择木而栖」：聪明的鸟儿落脚之前，会先看看这棵树值不值得。投简历也一样，早起的鸟儿有虫吃，但聪明的鸟儿先择木。目前是抢先体验阶段，可以在项目主页直接下载 zip 安装。',
+          en: 'The name comes from a Chinese proverb: a good bird picks its tree before it lands. Same with job hunting — the early bird catches the worm, but the wise bird checks the tree first. It’s in early access for now: you can download the zip straight from the project page.',
+        },
+        linkText: { zh: '项目主页', en: 'Project page' },
+      },
+      {
+        cat: 'chrome',
+        titleHref: 'https://huanshuowang.com/douban-rating-ext/',
+        icon: 'img/douban-icon.png',
+        title: { zh: '这豆瓣评分多少？', en: 'What’s the Douban Rating?' },
+        desc: {
+          zh: '看剧、看电影、刷解说、逛搜索页——点一下插件图标，就直接知道这部片的豆瓣多少分。',
+          en: 'Watching a show or movie, browsing recap videos or a search page — just click the extension icon to instantly see the film’s Douban rating.',
+        },
+        think: {
+          zh: '喜欢先看豆瓣再决定看不看这个片子的人有福了（我有福了）。目标是不用费啦吧唧地打开手机搜那个片名——每次看手机最后都会 end up 看了半小时小红书，电脑都黑屏了……',
+          en: 'A blessing for anyone who likes to check Douban before deciding whether to watch something (a blessing for me). The goal: no more fumbling for your phone to search the title — every time I pick up my phone I end up half an hour deep in Xiaohongshu and the computer has already gone dark…',
+        },
+        linkText: { zh: '项目主页', en: 'Project page' },
+        storeHref: 'https://chromewebstore.google.com/detail/necllgpdfffbdcgenhlgoimhnjfjdkkp',
+        storeText: { zh: '在 Chrome 应用商店安装', en: 'Get it on the Chrome Web Store' },
+      },
       {
         cat: 'website',
         titleHref: 'https://ridewithhappy.com',
@@ -132,6 +191,7 @@
       {
         cat: 'chrome',
         titleHref: 'https://huanshuowang.com/bilibili-downloader',
+        icon: 'img/bilibili-icon.png',
         title: { zh: 'Bilibili 下载器', en: 'Bilibili Downloader' },
         desc: {
           zh: '如标题所述，可以下载 B 站视频（MP4）和字幕（如有，SRT）到本地。',
@@ -142,38 +202,6 @@
           en: 'At first I just wanted to see whether it was even possible… turns out it was, hahaha! Now I can download favorite movies / stand-up specials and watch them offline. Yay.',
         },
         linkText: { zh: '项目主页', en: 'Project page' },
-      },
-      {
-        cat: 'chrome',
-        titleHref: 'https://huanshuowang.com/happysubs',
-        title: { zh: 'HappySubs 双语字幕', en: 'HappySubs — Dual Subtitles for YouTube, Vimeo and Bilibili' },
-        desc: {
-          zh: '在 YouTube、Vimeo、B 站上同时显示两种语言的字幕。用视频自带字幕或 Google 免费翻译，也可选用AI做更高精度的翻译。本身没有字幕的视频，可以边播边听译。',
-          en: 'Show subtitles in two languages at once on YouTube, Vimeo and Bilibili. Use the video’s own captions or free Google Translate, or switch to AI for higher-accuracy translation. Videos that have no subtitles of their own can be transcribed as they play.',
-        },
-        think: {
-          zh: '做的原因是之前一直用得好好的双语字幕插件被油管 ban 了 :( ，自带字幕只能显示单语言。后面朋友启发我用了 API 翻译，确实翻译效果更好了～ 后续同步到Vimeo和B站啦，还针对B站的生肉视频们设计了实时听译功能。',
-          en: 'I built it because the dual-subtitle extension I’d happily used forever got banned by YouTube :( and the built-in captions only show one language. Later a friend nudged me to try API translation, which really does work better～ After that I brought it over to Vimeo and Bilibili, and built live transcription for all those raw, subtitle-less videos on Bilibili.',
-        },
-        linkText: { zh: '项目主页', en: 'Project page' },
-        storeHref: 'https://chromewebstore.google.com/detail/malocefbdblplamcmmmpilepcgllfmnf',
-        storeText: { zh: '在 Chrome 应用商店安装', en: 'Get it on the Chrome Web Store' },
-      },
-      {
-        cat: 'chrome',
-        titleHref: 'https://huanshuowang.com/douban-rating-ext/',
-        title: { zh: '这豆瓣评分多少？', en: 'What’s the Douban Rating?' },
-        desc: {
-          zh: '看剧、看电影、刷解说、逛搜索页——点一下插件图标，就直接知道这部片的豆瓣多少分。',
-          en: 'Watching a show or movie, browsing recap videos or a search page — just click the extension icon to instantly see the film’s Douban rating.',
-        },
-        think: {
-          zh: '喜欢先看豆瓣再决定看不看这个片子的人有福了（我有福了）。目标是不用费啦吧唧地打开手机搜那个片名——每次看手机最后都会 end up 看了半小时小红书，电脑都黑屏了……',
-          en: 'A blessing for anyone who likes to check Douban before deciding whether to watch something (a blessing for me). The goal: no more fumbling for your phone to search the title — every time I pick up my phone I end up half an hour deep in Xiaohongshu and the computer has already gone dark…',
-        },
-        linkText: { zh: '项目主页', en: 'Project page' },
-        storeHref: 'https://chromewebstore.google.com/detail/necllgpdfffbdcgenhlgoimhnjfjdkkp',
-        storeText: { zh: '在 Chrome 应用商店安装', en: 'Get it on the Chrome Web Store' },
       },
     ];
 
@@ -213,8 +241,8 @@
         el.dataset.cat = p.cat;
         el.innerHTML =
           '<div class="kicker"></div>' +
-          '<h3>' + (p.titleHref
-            ? '<a href="' + p.titleHref + '" target="_blank" rel="noopener"></a>'
+          '<h3>' + (p.icon ? '<img class="ico" src="' + p.icon + '" alt="" width="30" height="30">' : '') + (p.titleHref
+            ? '<a href="' + p.titleHref + '" target="_blank" rel="noopener">' + (p.logo ? LOGOS[p.logo] : '') + '<span class="tt"></span></a>'
             : '<span></span>') + '</h3>' +
           '<p class="desc"></p>' +
           '<p class="think"></p>' +
@@ -231,8 +259,8 @@
       function layout() {
         const visible = cardEls.filter(c => currentCat === 'all' || c.dataset.cat === currentCat);
         cardEls.forEach(c => c.classList.toggle('hide', !visible.includes(c)));
-        const half = Math.ceil(visible.length / 2);
-        visible.forEach((c, i) => cols[i < half ? 0 : 1].appendChild(c));
+        // 左右交替放置：第 1 个在左、第 2 个在右……阅读顺序按行排列
+        visible.forEach((c, i) => cols[i % 2].appendChild(c));
         // 隐藏的卡片挪到右列末尾（display:none，不影响排版）
         cardEls.filter(c => !visible.includes(c)).forEach(c => cols[1].appendChild(c));
         countEl.textContent = '· ' + visible.length;
@@ -271,7 +299,7 @@
         cardEls.forEach((el, i) => {
           const p = PROJECTS[i];
           el.querySelector('.kicker').textContent = CATS[p.cat][lang];
-          el.querySelector('h3 a, h3 span').textContent = p.title[lang];
+          (el.querySelector('h3 .tt') || el.querySelector('h3 a, h3 span')).textContent = p.title[lang];
           el.querySelector('.desc').innerHTML = p.desc[lang];
           el.querySelector('.think').innerHTML = '<b>' + t.thoughts + '</b>' + p.think[lang];
           el.querySelector('.links .lt').textContent = p.linkText[lang];
