@@ -184,8 +184,6 @@ a:hover { text-decoration: underline; }
 .card h3 { margin: 0 0 8px; font-size: 19px; font-weight: 750; letter-spacing: -0.01em; }
 .card h3 .ico { width: 30px; height: 30px; border-radius: 8px; vertical-align: -7px; margin-right: 10px; }
 .card h3 .wm { height: 20px; width: auto; vertical-align: -3px; margin-right: 10px; }
-.card h3 .wm-dark { display: none; }
-@media (prefers-color-scheme: dark) { .card h3 .wm-light { display: none; } .card h3 .wm-dark { display: inline; } }
 .card h3 a { color: var(--ink); }
 .card h3 a:hover { color: var(--accent); text-decoration: none; }
 .card .desc { color: var(--muted); font-size: 14.5px; margin: 0 0 16px; }

@@ -6,7 +6,7 @@
   <title>Projects by Happy</title>
   <meta name="description" id="metaDesc" content="Happy 做出来的有用或有趣的东西。" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
   <nav class="nav">
@@ -116,8 +116,8 @@
     // 作品数据（中/英双语）
     // 文字 logo：标题处用图片替换文字，浅色/深色模式各一张
     const wm = (name, alt, h) =>
-      '<img class="wm wm-light" src="img/' + name + '.svg" alt="' + alt + '" height="' + h + '">' +
-      '<img class="wm wm-dark" src="img/' + name + '-dark.svg" alt="' + alt + '" height="' + h + '">';
+      '<picture><source media="(prefers-color-scheme: dark)" srcset="img/' + name + '-dark.svg">' +
+      '<img class="wm" src="img/' + name + '.svg" alt="' + alt + '" height="' + h + '"></picture>';
     const LOGOS = {
       happysubs: wm('happysubs-wordmark', 'HappySubs', 20),
       wisebird: wm('wisebird-wordmark', 'Wisebird 择木', 22),
